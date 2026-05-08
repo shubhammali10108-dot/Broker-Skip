@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+    <h1>Dashboard</h1>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+        <button ng-click="filterType = 'all'" ng-class="{active: filterType === 'all'}" class="tab-btn">All Posts</button>
+        <button ng-click="filterType = 'myPosts'" ng-class="{active: filterType === 'myPosts'}" class="tab-btn">My Posts</button>
+        <button ng-click="filterType = 'favorites'" ng-class="{active: filterType === 'favorites'}" class="tab-btn">Favorites</button>
+    </div>
+
+    <!-- Properties Grid -->
+    <div ng-show="properties.length > 0" class="property-grid">
+        <div ng-repeat="property in properties" class="property-card">
+            <img ng-src="{{property.imageUrls[0]}}" alt="{{property.title}}" class="property-image">
+            <div class="property-info">
+                <div class="property-title">{{property.title}}</div>
+                <div class="property-price">₹{{property.price | number}}</div>
+                <div class="property-details">
+                    <span>🛏️ {{property.bedrooms}} BHK</span>
+                    <span>🚿 {{property.bathrooms}} Bath</span>
+                    <span>📐 {{property.area}} sqft</span>
+                </div>
+                <div class="property-location">📍 {{property.location}}, {{property.city}}</div>
+                <div class="property-actions">
+                    <button ng-click="viewProperty(property.id)" class="btn btn-primary">View Details</button>
+                    <button ng-click="toggleFavorite(property.id)" ng-class="{liked: isFavorite(property.id)}" class="btn btn-secondary">❤️</button>
+                    <button ng-show="property.userId === currentUser.id" ng-click="deleteProperty(property.id)" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty State -->
+    <div ng-show="properties.length === 0" class="empty-state">
+        <div class="empty-state-icon">📭</div>
+        <p>No properties found</p>
+    </div>
+</div>
+
+<style>
+.dashboard-container h1 {
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.tab-btn {
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.tab-btn.active {
+    color: #667eea;
+    border-bottom-color: #667eea;
+}
+
+.tab-btn:hover {
+    color: #667eea;
+}
+</style>

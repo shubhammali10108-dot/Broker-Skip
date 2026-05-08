@@ -1,0 +1,84 @@
+<div class="login-container">
+    <div class="login-card">
+        <h1>Broker Skip</h1>
+        <p class="subtitle">Real Estate Platform</p>
+
+        <!-- Phone Number Step -->
+        <div ng-show="step === 'phone'">
+            <h2>Enter Your Phone Number</h2>
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="text" ng-model="phoneNumber" placeholder="10-digit mobile number" maxlength="10">
+            </div>
+            <button ng-click="sendOtp()" class="btn btn-primary btn-block">Send OTP</button>
+        </div>
+
+        <!-- OTP Verification Step -->
+        <div ng-show="step === 'otp'">
+            <h2>Verify OTP</h2>
+            <p>OTP sent to {{phoneNumber}}</p>
+            <div class="form-group">
+                <label>Enter OTP</label>
+                <input type="text" ng-model="otp" placeholder="6-digit OTP" maxlength="6">
+            </div>
+            <div class="otp-timer">
+                <span ng-show="otpTimer > 0">OTP expires in: {{getTimerDisplay()}}</span>
+                <span ng-show="otpTimer <= 0" class="otp-expired">OTP expired</span>
+            </div>
+            <button ng-click="verifyOtp()" class="btn btn-primary btn-block mt-2">Verify OTP</button>
+            <button ng-show="canResendOtp" ng-click="resendOtp()" class="btn btn-secondary btn-block mt-2">Resend OTP</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-card h1 {
+    color: #667eea;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.login-card .subtitle {
+    text-align: center;
+    color: #999;
+    margin-bottom: 2rem;
+}
+
+.login-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.otp-timer {
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.otp-expired {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.btn-block {
+    width: 100%;
+}
+</style>

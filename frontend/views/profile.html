@@ -1,0 +1,136 @@
+<div class="profile-container">
+    <div class="profile-card">
+        <div class="profile-header">
+            <img ng-src="{{currentUser.profilePhotoUrl}}" alt="{{currentUser.firstName}}" class="profile-photo">
+            <h1>{{currentUser.firstName}} {{currentUser.lastName}}</h1>
+            <p class="user-city">{{currentUser.city}}, {{currentUser.state}}</p>
+        </div>
+
+        <div class="profile-content">
+            <h2>Profile Information</h2>
+            <div class="info-row">
+                <span class="label">Phone Number:</span>
+                <span class="value">{{currentUser.phoneNumber}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Email:</span>
+                <span class="value">{{currentUser.email}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Location:</span>
+                <span class="value">{{currentUser.city}}, {{currentUser.state}} - {{currentUser.pincode}}</span>
+            </div>
+            <div class="info-row" ng-show="currentUser.bio">
+                <span class="label">Bio:</span>
+                <span class="value">{{currentUser.bio}}</span>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat">
+                    <div class="stat-number">{{myPropertiesCount}}</div>
+                    <div class="stat-label">Properties Listed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">{{favoriteCount}}</div>
+                    <div class="stat-label">Favorites</div>
+                </div>
+            </div>
+
+            <button ng-click="editProfile()" class="btn btn-primary btn-block mt-3">Edit Profile</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.profile-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
+.profile-header h1 {
+    margin: 0.5rem 0;
+}
+
+.user-city {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.profile-content {
+    padding: 2rem;
+}
+
+.profile-content h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.info-row .label {
+    font-weight: 600;
+    color: #666;
+}
+
+.info-row .value {
+    color: #333;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 2rem 0;
+    border-top: 2px solid #f0f0f0;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.stat {
+    flex: 1;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.stat-label {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.btn-block {
+    width: 100%;
+}
+</style>
